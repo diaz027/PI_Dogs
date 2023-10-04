@@ -4,7 +4,7 @@ import Card from "../card/card";
 const Cards = ({dogs}) => {
     return (
         <div className={style.cards}>
-            {dogs.map(({id, name, height, weight, life_span, reference_image_id, temperaments}) => {
+            {dogs.map(({id, name, height, weight, life_span, reference_image_id, temperament}) => {
                 return (
                     <Card
                     key={id}
@@ -14,7 +14,7 @@ const Cards = ({dogs}) => {
                     weight={weight}
                     life_span={life_span}
                     reference_image_id={reference_image_id}
-                    temperaments={temperaments}
+                    temperament={temperament}
                     />
                 )
             })

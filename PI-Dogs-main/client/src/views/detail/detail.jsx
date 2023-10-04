@@ -17,11 +17,11 @@ const Detail = () => {
      }, [id])
      return (
         <div>
-        <h2>{dogs.name}</h2>
-        <h2>{dogs.height?.metric}</h2>
-        <h2>{dogs.weight?.metric}</h2>
-        <h2>{dogs.life_span}</h2>
-        <h2>{dogs.temperaments}</h2>
+        <h2>Nombre:{dogs.name}</h2>
+        <h2>Altura:{dogs.height?.metric}</h2>
+        <h2>Peso:{dogs.weight?.metric}</h2>
+        <h2>Años:{dogs.life_span}</h2>
+        <h2>Temperamentos:{dogs.temperament}</h2>
         <img className={style.img} src={`https://cdn2.thedogapi.com/images/${dogs.reference_image_id}.jpg`} />
         </div>
         
