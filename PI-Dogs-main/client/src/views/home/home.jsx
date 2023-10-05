@@ -13,7 +13,7 @@ const Home = () => {
   const newDogs = useSelector((state) => state?.dogs);
   const totalDogs = newDogs?.length;
   const totalPage = Math.ceil(totalDogs / DOGS_PER_PAGE);
-
+  
   const [currentPage, setCurrentPage] = useState(0);
 
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const Home = () => {
   const handleFilter = (event) => {
     dispatch(filterTemp(event.target.value))
   }
-  
+
   return (
     <div className={style.home}>
 

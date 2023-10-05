@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getDogsName } from '../../Redux/actions';
+import { getDogsName, getDogs } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
 import style from './searchBar.module.css'
 
@@ -22,10 +22,14 @@ const SearchBar = () => {
     const handleName = (event) => {
         setName(event.target.value)
     }
+    const reset = () => {
+        dispatch(getDogs());
+    }
     return (
         <div>
             <input className={style.label} type='text' onChange={handleName} value={name} />
             <button className={style.button} onClick={handleOnClick}>agregar</button>
+            <button className={style.button} onClick={reset}>reset</button>
         </div>
     )
 }

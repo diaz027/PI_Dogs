@@ -11,7 +11,7 @@ const  CrearForm= () => {
     minWeight: "",
     maxWeight: "",
     life_span: '',
-    temperament: [],
+    // temperament: [],
   });
 
   const handleChange = (event) => {
