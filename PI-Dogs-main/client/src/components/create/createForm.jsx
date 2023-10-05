@@ -1,28 +1,52 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { createAllDog } from "../../Redux/actions";
 import validacion from "./validacion";
 import style from './create.module.css'
 
 const CrearForm = () => {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: '',
     reference_image_id: "",
-    minHeight: "",
-    maxHeight: "",
-    minWeight: "",
-    maxWeight: "",
+    height:"",
+    weight:"",
     life_span: '',
-    // temperament: [],
+    temperament: [],
   });
 
   const handleChange = (event) => {
+    if(event.target.name === "minHeight"){
+      return setFormData({
+        ...formData,
+        height: event.target.value.concat(formData.height)
+      })
+    }
+    if(event.target.name === "maxHeight"){
+      return setFormData({
+        ...formData,
+        height: formData.height.concat( " - " + event.target.value)
+      })
+    }
+    if(event.target.name === "minWeight"){
+      return setFormData({
+        ...formData,
+        weight: event.target.value.concat(formData.weight)
+      })
+    }
+    if(event.target.name === "maxWeight"){
+      return setFormData({
+        ...formData,
+        weight: formData.weight.concat( " - " + event.target.value)
+      })
+    }
+
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
     });
-
-
+    
     setErrors(
       validacion({
         ...formData,
@@ -30,11 +54,12 @@ const CrearForm = () => {
       })
     );
   }
-
+  
+  console.log(formData)
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createAllDog(formData);
+    dispatch(createAllDog(formData));
   };
 
 
@@ -67,6 +92,9 @@ const CrearForm = () => {
         <label >años de vida</label>
         <input type="text" name="life_span" value={formData.life_span} onChange={handleChange} />
         {errors.life_span && <p style={{ color: 'white', fontSize: '20px' }}>{errors.life_span}</p>}
+
+        <label > temperamentos</label>
+        <input type="text" name="temperament" value={formData.temperament} onChange={handleChange}/>
 
         <button >Crear</button>
       </form>

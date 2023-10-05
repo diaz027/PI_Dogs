@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
             return { ...state, dogs: action.payload, newDogs: action.payload };
 
         case FILTER:
-            const filteredDogs = state.newDogs.filter(dog => { return dog.temperament.includes(action.payload) });
+            const filteredDogs = state.newDogs.filter(dog =>  dog.temperament.includes(action.payload) );
             return { ...state, dogs: filteredDogs };
 
         case ORDER:

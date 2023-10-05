@@ -4,6 +4,7 @@
     border: none;
     border-radius: 50px; /* Hace que los bordes del botón sean redondos */
     color: white;
+    box-shadow: 0 0 20px rgba(253, 253, 253, 0.8); 
 }
 
 .label {

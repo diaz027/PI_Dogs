@@ -21,15 +21,21 @@ export const getDogsName = (name) => {
       }
 }
 
-export const createAllDog = () => {
+export const createAllDog = (formData) => {
       return async (dispatch) => {
-            const response = await axios.post(`http://localhost:3001/dogs`);
-            return dispatch({
-                  type: CREATE_DOG,
-                  payload: response.data,
-            });
+        try {
+            
+              const response = await axios.post(`http://localhost:3001/dogs`, formData);
+              alert('ya se creo perrito!!')
+              return dispatch({
+                    type: CREATE_DOG,
+                    payload: response.data,
+                  });
+            } catch (error) {
+                  alert(error.message)
+            }
+      }   
       }
-}
 
 export const filterTemp =() =>{
       return async (dispatch) => {
