@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createAllDog } from "../../Redux/actions";
+import style from './create.module.css'
 
 const  CrearForm= () => {
   const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ const  CrearForm= () => {
 
 
     return(
-        <div>
+        <div className={style.body}>
             <form onSubmit={handleSubmit}>
                 <label >Nombre</label>
                 <input type="text" name="name" value={formData.name} onChange={handleChange}/>

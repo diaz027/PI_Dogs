@@ -16,7 +16,7 @@ const Detail = () => {
         character()
      }, [id])
      return (
-        <div>
+        <div className={style.body}>
         <h2>Nombre:{dogs.name}</h2>
         <h2>Altura:{dogs.height?.metric}</h2>
         <h2>Peso:{dogs.weight?.metric}</h2>
