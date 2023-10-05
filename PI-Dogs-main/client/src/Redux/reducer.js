@@ -1,8 +1,9 @@
-import { CREATE_DOG, FILTER, GET_DOGS, GET_NAME, ORDER } from "./action-types";
+import { CREATE_DOG, FILTER, GET_DOGS, GET_NAME, ORDER, TEMPERAMENTO } from "./action-types";
 
 let initialState = {
     dogs: [],//original
-    newDogs: [] //copia
+    newDogs: [], //copia
+    temperaments: [] // n
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -12,6 +13,8 @@ const reducer = (state = initialState, action) => {
             return { ...state, dogs: action.payload, newDogs: action.payload };
         case CREATE_DOG:
             return { ...state, dogs: action.payload, newDogs: action.payload };
+        case TEMPERAMENTO:
+            return {...state, temperaments: action.payload}
 
         case FILTER:
             const filteredDogs = state.newDogs.filter(dog =>  dog.temperament.includes(action.payload) );

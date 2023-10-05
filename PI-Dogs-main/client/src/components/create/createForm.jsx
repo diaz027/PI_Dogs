@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createAllDog } from "../../Redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { createAllDog, temperaments } from "../../Redux/actions";
 import validacion from "./validacion";
 import style from './create.module.css'
 
 const CrearForm = () => {
+  const newTemperamento = useSelector((state) => state?.temperaments);
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -96,8 +97,13 @@ const CrearForm = () => {
           <input type="text" name="life_span" value={formData.life_span} onChange={handleChange} />
           {errors.life_span && <p style={{ color: 'white', fontSize: '20px' }}>{errors.life_span}</p>}
 
-          <label > temperamentos</label>
-          <input type="text" name="temperament" value={formData.temperament} onChange={handleChange} />
+          <select >
+           { newTemperamento.map(temperament => (<option></option>))}
+          </select>
+
+           {/* hacer un seletc multiple para seleccionar varios temperamentos, traer el allTemperaments y guardar en un estado local(temperaments) */}
+          {/* <label > temperamentos</label>
+          <input type="text" name="temperament" value={formData.temperament} onChange={handleChange} /> */}
 
           <button className={style.boton}>Crear</button>
         </form>
