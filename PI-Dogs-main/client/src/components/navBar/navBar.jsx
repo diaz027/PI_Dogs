@@ -7,10 +7,14 @@ const NavBar = () => {
     const navigateHandler = () => {
         navigate('/home')
     }
+        const onClikcHandler = () => {
+            navigate('/form')
+        }
     return (
         <div>
             {location.pathname !== '/home' && location.pathname !== '/' && <button onClick={navigateHandler} >Home</button>}
             {location.pathname === '/home' && <SearchBar/>}
+            {location.pathname === '/home' && <button onClick={onClikcHandler}>CREATE</button>}
         </div>
     )
 }

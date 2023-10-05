@@ -4,6 +4,7 @@ import Home from './views/home/home';
 import Init from './views/landing/landind';
 import Detail from './views/detail/detail';
 import NavBar from './components/navBar/navBar';
+import Form from './views/form/form';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path='/' element={<Init/>} />
           <Route path='/home' element={<Home/>}/>
           <Route path='/detail/:id' element={<Detail/>}/>
+          <Route path='/form' element={<Form/>}/>
       </Routes>
     </div>
   );
