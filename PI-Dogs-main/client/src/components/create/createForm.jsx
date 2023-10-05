@@ -3,11 +3,11 @@ import { createAllDog } from "../../Redux/actions";
 import validacion from "./validacion";
 import style from './create.module.css'
 
-const  CrearForm= () => {
+const CrearForm = () => {
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: '',
-    // imagen: "",
+    reference_image_id: "",
     minHeight: "",
     maxHeight: "",
     minWeight: "",
@@ -38,36 +38,39 @@ const  CrearForm= () => {
   };
 
 
-    return(
-        <div className={style.body}>
-            <form onSubmit={handleSubmit}>
-                <label >Nombre</label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange}/>
-                {errors.name && <p style = {{color: 'white', fontSize: '20px'}}>{errors.name}</p>}
+  return (
+    <div className={style.body}>
+      <form onSubmit={handleSubmit}>
+        <label >Nombre</label>
+        <input type="text" name="name" value={formData.name} onChange={handleChange} />
+        {errors.name && <p style={{ color: 'white', fontSize: '20px' }}>{errors.name}</p>}
 
-                <label >AlturaMin</label>
-                <input type="text" name="minHeight" value={formData.minHeight} onChange={handleChange}/>
-                {errors.minHeight && <p style = {{color: 'white', fontSize: '20px'}}>{errors.minHeight}</p>}
+        <label >imagen</label>
+        <input type="text" name="reference_image_id" value={formData.reference_image_id} onChange={handleChange} />
 
-                <label >AlturaMax</label>
-                <input  type="text" name="maxHeight" value={formData.maxHeight} onChange={handleChange}/>
-                {errors.maxHeight && <p style = {{color: 'white', fontSize: '20px'}}>{errors.maxHeight}</p>}
+        <label >AlturaMin</label>
+        <input type="text" name="minHeight" value={formData.minHeight} onChange={handleChange} />
+        {errors.minHeight && <p style={{ color: 'white', fontSize: '20px' }}>{errors.minHeight}</p>}
 
-                <label >PesoMin</label>
-                <input  type="text" name="minWeight" value={formData.minWeight} onChange={handleChange}/>
-                {errors.minWeight && <p style = {{color: 'white', fontSize: '20px'}}>{errors.minWeight}</p>}
+        <label >AlturaMax</label>
+        <input type="text" name="maxHeight" value={formData.maxHeight} onChange={handleChange} />
+        {errors.maxHeight && <p style={{ color: 'white', fontSize: '20px' }}>{errors.maxHeight}</p>}
 
-                <label >PesoMax</label>
-                <input  type="text" name="maxWeight" value={formData.maxWeight} onChange={handleChange}/>
-                {errors.maxWeight && <p style = {{color: 'white', fontSize: '20px'}}>{errors.maxWeight}</p>}
+        <label >PesoMin</label>
+        <input type="text" name="minWeight" value={formData.minWeight} onChange={handleChange} />
+        {errors.minWeight && <p style={{ color: 'white', fontSize: '20px' }}>{errors.minWeight}</p>}
 
-                <label >años de vida</label>
-                <input  type="text" name="life_span" value={formData.life_span} onChange={handleChange}/>
-                {errors.life_span && <p style = {{color: 'white', fontSize: '20px'}}>{errors.life_span}</p>}
+        <label >PesoMax</label>
+        <input type="text" name="maxWeight" value={formData.maxWeight} onChange={handleChange} />
+        {errors.maxWeight && <p style={{ color: 'white', fontSize: '20px' }}>{errors.maxWeight}</p>}
 
-                <button >Crear</button>
-            </form>
-        </div>
-    )
+        <label >años de vida</label>
+        <input type="text" name="life_span" value={formData.life_span} onChange={handleChange} />
+        {errors.life_span && <p style={{ color: 'white', fontSize: '20px' }}>{errors.life_span}</p>}
+
+        <button >Crear</button>
+      </form>
+    </div>
+  )
 }
 export default CrearForm;
