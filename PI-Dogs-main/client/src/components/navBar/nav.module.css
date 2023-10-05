@@ -1,0 +1,7 @@
+.boton{
+    background-color: rgb(51, 51, 51);
+    border: none;
+    border-radius: 1px; /* Hace que los bordes del botón sean redondos */
+    color: white;
+    box-shadow: 0 0 20px rgba(20, 4, 243, 0.986); 
+}

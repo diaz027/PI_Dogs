@@ -1,5 +1,6 @@
-import SearchBar from "../searchBar/searchBar"
 import { useNavigate, useLocation } from "react-router-dom"
+import SearchBar from "../searchBar/searchBar"
+import style from './nav.module.css'
 
 const NavBar = () => {
     const location = useLocation()
@@ -12,9 +13,9 @@ const NavBar = () => {
         }
     return (
         <div>
-            {location.pathname !== '/home' && location.pathname !== '/' && <button onClick={navigateHandler} >Home</button>}
+            {location.pathname !== '/home' && location.pathname !== '/' && <button className={style.boton} onClick={navigateHandler} >Home</button>}
             {location.pathname === '/home' && <SearchBar/>}
-            {location.pathname === '/home' && <button onClick={onClikcHandler}>CREATE</button>}
+            {location.pathname === '/home' && <button  className={style.boton} onClick={onClikcHandler}>CREATE</button>}
         </div>
     )
 }
