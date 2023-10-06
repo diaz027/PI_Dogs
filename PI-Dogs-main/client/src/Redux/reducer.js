@@ -4,6 +4,7 @@ let initialState = {
     dogs: [],//original
     newDogs: [], //copia
     temperaments: [],
+    tempHome: [],
     allFilteBd: []
 
 }
@@ -19,9 +20,8 @@ const reducer = (state = initialState, action) => {
             return { ...state, temperaments: action.payload }
 
         case FILTER:
-            const filteredDogs = state.newDogs.filter(dog =>  dog.temperament.includes(action.payload) );
-            return { ...state, dogs: filteredDogs };
-
+            return { ...state, tempHome: action.payload };
+            
         case FILTER_BD:
             return { ...state, allFilteBd: action.payload }
 
@@ -45,7 +45,8 @@ const reducer = (state = initialState, action) => {
         case ORDER_PESOS:
             let sortedDogs = [...state.dogs];
             sortedDogs.sort((a, b) => {
-                if(action.payload === 'asc') { return a.weight - b.weight
+                if (action.payload === 'asc') {
+                    return a.weight - b.weight
                 } else {
                     return b.weight - a.weight
                 }

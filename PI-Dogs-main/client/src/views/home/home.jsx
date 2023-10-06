@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { filterBd, getDogs, orderPesos, } from '../../Redux/actions';
-import { filterTemp, orderCards } from '../../Redux/actions'
+import { filterTemp, getDogs, orderPesos, } from '../../Redux/actions';
+import { all, orderCards } from '../../Redux/actions'
 import Cards from '../../components/cards/cards';
 import style from './home.module.css'
 // import axios from 'axios'
@@ -10,9 +10,11 @@ import style from './home.module.css'
 const DOGS_PER_PAGE = 8;
 
 const Home = () => {
+  const allTempeHome = useSelector((state) => state?.tempHome)
   const newDogs = useSelector((state) => state?.dogs);
   const totalDogs = newDogs?.length;
   const totalPage = Math.ceil(totalDogs / DOGS_PER_PAGE);
+console.log(allTempeHome)
 
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -20,7 +22,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(getDogs());
   }, [dispatch]);
-
 
   const startDogs = currentPage * DOGS_PER_PAGE;
   const endDogs = startDogs + DOGS_PER_PAGE;
@@ -40,20 +41,18 @@ const Home = () => {
   const handleOrder = (event) => {
     dispatch(orderCards(event.target.value));
   }
-  const handleFilter = (event) => {
-    const selectedValue = event.target.value;
-
-    if (selectedValue === 'Api') {
-      dispatch(filterTemp(selectedValue));
-    } else if (selectedValue === 'Base de datos') {
-      dispatch(filterBd(selectedValue));
-    }
-  }
 
   const handleOrderPesos = (event) => {
     dispatch(orderPesos(event.target.value));
   }
 
+
+  // const handleFilterByTemp = (event) => {
+  //   dispatch(filterTemp(event.target.value))
+  // }
+  useEffect(() => {
+    dispatch(filterTemp());
+  }, []);
 
 
 
@@ -65,21 +64,20 @@ const Home = () => {
         <option value="D">Z-A</option>
       </select>
 
-      <select className={style.option} onChange={handleFilter}>
+      <select className={style.option} >
         <option value="Api">api</option>
         <option value="Base de datos">db</option>
       </select>
 
       <select className={style.option}  onChange={handleOrderPesos}>
-        <option >PesoMax</option>
+        <option value= 'asc'>PesoMax</option>
         <option >PesoMin</option>
       </select>
 
-      {/* <select >
-        {newTemperamento.map(temperament => <option name={temperament.name} key={temperament.name}>{temperament.name}</option>)}
-      </select> */}
-
-
+      <select >
+        <option>selectciona</option>
+        {allTempeHome.map(temperament => <option name={temperament.name} key={temperament.name}>{temperament.name}</option>)}
+      </select>
 
       <Cards dogs={dogsToDisplay} />
       <div>
