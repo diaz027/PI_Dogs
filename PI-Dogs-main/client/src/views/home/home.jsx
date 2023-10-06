@@ -11,21 +11,20 @@ const DOGS_PER_PAGE = 8;
 
 const Home = () => {
   const newTemperamento = useSelector((state) => state?.temperaments);
-  const newDogs = useSelector((state) => state?.newDogs);
+  const newDogs = useSelector((state) => state?.newDogs || []);
   const [temperamentos, setTemperamentos] = useState("");
   const totalDogs = newDogs?.length;
   const totalPage = Math.ceil(totalDogs / DOGS_PER_PAGE);
-
   const [currentPage, setCurrentPage] = useState(0);
-
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getDogs());
   }, [dispatch]);
 
   const startDogs = currentPage * DOGS_PER_PAGE;
   const endDogs = startDogs + DOGS_PER_PAGE;
-  const dogsToDisplay = newDogs?.slice(startDogs, endDogs)
+  const dogsToDisplay = newDogs?.slice(startDogs, endDogs);
 
   const nextHandler = () => {
     if (currentPage < totalPage - 1) {
@@ -81,7 +80,7 @@ const Home = () => {
       </select>
 
       <Cards newDogs={dogsToDisplay} />
-      
+
       <div>
         <button className={style.boton} onClick={prevHandler} disabled={currentPage === 0} >Prev</button>
         <span style={{ color: 'white' }}>pagina: {currentPage + 1} de {totalPage} </span>
