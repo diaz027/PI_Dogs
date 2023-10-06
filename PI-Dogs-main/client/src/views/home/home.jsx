@@ -47,8 +47,8 @@ const Home = () => {
     <div className={style.home}>
 
       <select className={style.option} onChange={handleOrder}>
-        <option value="A">Ascendente</option>
-        <option value="D">Desendente</option>
+        <option value="A">A-Z</option>
+        <option value="D">Z-A</option>
       </select>
 
       <select className={style.option} onChange={handleFilter}>
@@ -59,9 +59,9 @@ const Home = () => {
 
       <Cards dogs={dogsToDisplay} />
       <div>
-        <button className={style.option} onClick={prevHandler} disabled={currentPage === 0} >Prev</button>
+        <button className={style.boton} onClick={prevHandler} disabled={currentPage === 0} >Prev</button>
         <span style={{ color: 'white' }}>pagina: {currentPage + 1} de {totalPage} </span>
-        <button className={style.option} onClick={nextHandler} disabled={currentPage === totalPage - 1} >Next</button>
+        <button className={style.boton} onClick={nextHandler} disabled={currentPage === totalPage - 1} >Next</button>
       </div>
     </div>
   );

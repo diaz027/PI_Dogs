@@ -2,12 +2,15 @@
   background-color: rgba(0, 0, 0, 0.233);
   padding: 60px;
   border-radius: 10px;
-  color: rgb(16, 0, 235);
+  color: rgb(219, 217, 236);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: medium;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); 
 }
 
 .img{
-    height: 100px;
-    width: 100px;
-    border-radius: 5px;
+   display: inline-table;
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
 }

@@ -10,13 +10,13 @@ const validacion =  (FormData) =>{
         errors.maxHeight = 'solo numeros mi rey'
     }
     if(!/^[0-9]+$/i.test(FormData.minWeight)){
-        errors.minWeight = 'solo numeros reina o no aprendiste'
+        errors.minWeight = 'solo numeros mi rey'
     }
     if(!/^[0-9]+$/i.test(FormData.maxWeight)){
-        errors.maxWeight = 'no entendes que es solo numero'
+        errors.maxWeight = 'solo numeros mi rey'
     }
     if(!/^[0-9]+$/i.test(FormData.life_span)){
-        errors.life_span = 'escribi solo numeros salameeee'
+        errors.life_span = 'solo numeros mi rey'
     }
 
     return errors;

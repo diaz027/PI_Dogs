@@ -61,12 +61,12 @@ const CrearForm = () => {
       })
     );
   }
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createAllDog(formData));
   };
-
+console.log(formData)
 
   return (
     <div className={style.body}>

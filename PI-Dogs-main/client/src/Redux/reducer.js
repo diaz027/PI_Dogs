@@ -3,7 +3,7 @@ import { CREATE_DOG, FILTER, GET_DOGS, GET_NAME, ORDER, TEMPERAMENTO } from "./a
 let initialState = {
     dogs: [],//original
     newDogs: [], //copia
-    temperaments: [] // n
+    temperaments: [] // 
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
