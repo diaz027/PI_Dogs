@@ -11,10 +11,10 @@ const getTemperaments = async () => {
   )
   // convierto en array al set => [...uniqueTemperaments]
   const allTemperaments = [...uniqueTemperaments].map(temperament => ({//  lo mapeo para que yo poder convertirlo en objeto
-    name:temperament
+    name: temperament,
   }))
   //agrego a bd 
     Temperaments.bulkCreate(allTemperaments)
-  return allTemperaments;
+  return allTemperaments
 }
 module.exports = getTemperaments;

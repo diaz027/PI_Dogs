@@ -46,12 +46,12 @@ const Home = () => {
   return (
     <div className={style.home}>
 
-      <select onChange={handleOrder}>
+      <select className={style.option} onChange={handleOrder}>
         <option value="A">Ascendente</option>
         <option value="D">Desendente</option>
       </select>
 
-      <select onChange={handleFilter}>
+      <select className={style.option} onChange={handleFilter}>
         <option value="Api">api</option>
         <option value="db">db</option>
       </select>
@@ -59,9 +59,9 @@ const Home = () => {
 
       <Cards dogs={dogsToDisplay} />
       <div>
-        <button onClick={prevHandler} disabled={currentPage === 0} >Prev</button>
+        <button className={style.option} onClick={prevHandler} disabled={currentPage === 0} >Prev</button>
         <span style={{ color: 'white' }}>pagina: {currentPage + 1} de {totalPage} </span>
-        <button onClick={nextHandler} disabled={currentPage === totalPage - 1} >Next</button>
+        <button className={style.option} onClick={nextHandler} disabled={currentPage === totalPage - 1} >Next</button>
       </div>
     </div>
   );
