@@ -1,11 +1,8 @@
-.button{
-    
-    background-color: rgb(51, 51, 51);
-    border: none;
-    border-radius: 50px; /* Hace que los bordes del botón sean redondos */
-    color: white;
-    box-shadow: 0 0 20px rgba(253, 253, 253, 0.8); 
+.inputContainer {
+    display: flex;
+    align-items: center; /* Alinea elementos verticalmente en el centro */
 }
+
 
 .label {
     display: inline-block;
@@ -14,3 +11,11 @@
     background-color:#ca0101af; /* Color de fondo */
     color: #f0f0f0; /* Color del texto */
   }
+.button{
+    
+    background-color: rgb(51, 51, 51);
+    border: none;
+    border-radius: 50px; /* Hace que los bordes del botón sean redondos */
+    color: white;
+    box-shadow: 0 0 20px rgba(253, 253, 253, 0.8); 
+}
