@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { filterTemp, getDogs, orderPesos, } from '../../Redux/actions';
-import { all, orderCards } from '../../Redux/actions'
+import { filterTemp, getDogs, orderPesos, temp, } from '../../Redux/actions';
+import { orderCards } from '../../Redux/actions'
 import Cards from '../../components/cards/cards';
 import style from './home.module.css'
 // import axios from 'axios'
@@ -10,11 +10,11 @@ import style from './home.module.css'
 const DOGS_PER_PAGE = 8;
 
 const Home = () => {
-  const allTempeHome = useSelector((state) => state?.tempHome)
-  const newDogs = useSelector((state) => state?.dogs);
+  const newTemperamento = useSelector((state) => state?.temperaments);
+  const newDogs = useSelector((state) => state?.newDogs);
+  const [temperamentos, setTemperamentos] = useState("");
   const totalDogs = newDogs?.length;
   const totalPage = Math.ceil(totalDogs / DOGS_PER_PAGE);
-console.log(allTempeHome)
 
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -46,12 +46,13 @@ console.log(allTempeHome)
     dispatch(orderPesos(event.target.value));
   }
 
-
-  // const handleFilterByTemp = (event) => {
-  //   dispatch(filterTemp(event.target.value))
-  // }
+  const handlerFilter = (event) => {
+    const seleccion = event.target.value;
+    setTemperamentos(seleccion);
+    dispatch(filterTemp(seleccion))
+  }
   useEffect(() => {
-    dispatch(filterTemp());
+    dispatch(temp());
   }, []);
 
 
@@ -69,17 +70,18 @@ console.log(allTempeHome)
         <option value="Base de datos">db</option>
       </select>
 
-      <select className={style.option}  onChange={handleOrderPesos}>
-        <option value= 'asc'>PesoMax</option>
-        <option >PesoMin</option>
+      <select className={style.option} onChange={handleOrderPesos}>
+        <option value='PesoMax'>PesoMax</option>
+        <option value='PesoMin' >PesoMin</option>
       </select>
 
-      <select >
-        <option>selectciona</option>
-        {allTempeHome.map(temperament => <option name={temperament.name} key={temperament.name}>{temperament.name}</option>)}
+
+      <select className={style.option} onChange={handlerFilter}>
+        {newTemperamento.map(temperament => <option value={temperament.name} name={temperament.name} key={temperament.name}>{temperament.name}</option>)}
       </select>
 
-      <Cards dogs={dogsToDisplay} />
+      <Cards newDogs={dogsToDisplay} />
+      
       <div>
         <button className={style.boton} onClick={prevHandler} disabled={currentPage === 0} >Prev</button>
         <span style={{ color: 'white' }}>pagina: {currentPage + 1} de {totalPage} </span>

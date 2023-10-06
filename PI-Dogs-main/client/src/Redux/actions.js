@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_NAME, CREATE_DOG, ORDER, FILTER, TEMPERAMENTO, FILTER_BD, ORDER_PESOS } from './action-types'
+import { GET_DOGS, GET_NAME, CREATE_DOG, ORDER, FILTER, TEMPERAMENTO, FILTER_BD, FILTER_API, ORDER_PESOS } from './action-types'
 import axios from 'axios'
 
 export const getDogs = () => {
@@ -47,19 +47,21 @@ export const temp = () => {
       }
 }
 
-export const filterTemp = () => {
-      return async (dispatch) => {
-            const response = await axios.get(`http://localhost:3001/temperaments`);
-            return dispatch({
-                  type: FILTER,
-                  payload: response.data,
-            });
-      }
+export const filterTemp = (name) => {
+      return{
+            type: FILTER,
+            payload:name
+        }
+        
 }
 
 
 export const filterBd = (name) => {
       return { type: FILTER_BD, payload: name }
+}
+
+export const filterApi = (name) =>  {
+      return { type: FILTER_API, playload: name}
 }
 
 

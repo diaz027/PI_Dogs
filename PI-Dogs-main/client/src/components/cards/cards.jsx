@@ -1,10 +1,10 @@
 import style from './cards.module.css'
 import Card from "../card/card";
 
-const Cards = ({dogs}) => {
+const Cards = ({newDogs}) => {
     return (
         <div className={style.cards}>
-            {dogs.map(({id, name, height, weight, life_span, reference_image_id, temperament}) => {
+            {newDogs.map(({id, name, height, weight, life_span, reference_image_id, temperament}) => {
                 return (
                     <Card
                     key={id}
