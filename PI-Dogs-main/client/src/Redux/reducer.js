@@ -1,9 +1,11 @@
-import { CREATE_DOG, FILTER, GET_DOGS, GET_NAME, ORDER, TEMPERAMENTO } from "./action-types";
+import { CREATE_DOG, FILTER, FILTER_BD, GET_DOGS, GET_NAME, ORDER, ORDER_PESOS, TEMPERAMENTO } from "./action-types";
 
 let initialState = {
     dogs: [],//original
     newDogs: [], //copia
-    temperaments: [] // 
+    temperaments: [],
+    allFilteBd: []
+
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -14,11 +16,14 @@ const reducer = (state = initialState, action) => {
         case CREATE_DOG:
             return { ...state, dogs: action.payload, newDogs: action.payload };
         case TEMPERAMENTO:
-            return {...state, temperaments: action.payload}
+            return { ...state, temperaments: action.payload }
 
         case FILTER:
             const filteredDogs = state.newDogs.filter(dog =>  dog.temperament.includes(action.payload) );
             return { ...state, dogs: filteredDogs };
+
+        case FILTER_BD:
+            return { ...state, allFilteBd: action.payload }
 
         case ORDER:
             if (action.payload === 'A') {
@@ -37,6 +42,14 @@ const reducer = (state = initialState, action) => {
                     dogs: [...result]
                 }
             }
+        case ORDER_PESOS:
+            let sortedDogs = [...state.dogs];
+            sortedDogs.sort((a, b) => {
+                if(action.payload === 'asc') { return a.weight - b.weight
+                } else {
+                    return b.weight - a.weight
+                }
+            });
 
 
         default:

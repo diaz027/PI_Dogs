@@ -3,7 +3,7 @@ import { getDogsName, getDogs } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
 import style from './searchBar.module.css'
 
-const SearchBar = () => {
+const SearchBar = ({setCurrentPage}) => {
     const [name, setName] = useState('');
     const dispatch = useDispatch();
 
@@ -15,6 +15,7 @@ const SearchBar = () => {
                 alert(`No se encontró ningún perro con el nombre "${name}"`);
             }
             setName('');
+            setCurrentPage(0)
         } catch (error) {
             console.error('Error:', error);
         }

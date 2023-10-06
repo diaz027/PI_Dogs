@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_NAME, CREATE_DOG, ORDER, FILTER, TEMPERAMENTO } from './action-types'
+import { GET_DOGS, GET_NAME, CREATE_DOG, ORDER, FILTER, TEMPERAMENTO, FILTER_BD, ORDER_PESOS } from './action-types'
 import axios from 'axios'
 
 export const getDogs = () => {
@@ -37,6 +37,16 @@ export const createAllDog = (formData) => {
       }
 }
 
+export const temp = () => {
+      return async (dispatch) => {
+            const response = await axios.get(`http://localhost:3001/temperaments`);
+            return dispatch({
+                  type: TEMPERAMENTO,
+                  payload: response.data,
+            });
+      }
+}
+
 export const filterTemp = () => {
       return async (dispatch) => {
             const response = await axios.get(`http://localhost:3001/temperaments`);
@@ -48,17 +58,16 @@ export const filterTemp = () => {
 }
 
 
-export const temp = () => {
-      return async (dispatch) => {
-            const response = await axios.get(`http://localhost:3001/temperaments`);
-            return dispatch({
-                  type: TEMPERAMENTO,
-                  payload: response.data,
-            });
-      }
+export const filterBd = (name) => {
+      return { type: FILTER_BD, payload: name }
 }
+
 
 export const orderCards = (order) => {
       return { type: ORDER, payload: order }
 }
 
+export const orderPesos = (Order) => {
+      return { type: ORDER_PESOS, payload: Order };
+    };
+    
