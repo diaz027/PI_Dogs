@@ -17,15 +17,6 @@ const NavBar = () => {
             {location.pathname === '/home' && <SearchBar/>}
             {location.pathname === '/home' && <button className={style.boton}  onClick={onClikcHandler}>CREATE</button>}
         </div>
-//         <div className={style.navContainer}>
-//     {location.pathname !== '/home' && location.pathname !== '/' && <button className={style.boton} onClick={navigateHandler} >Home</button>}
-//     {location.pathname === '/home' && (
-//         <>
-//             <SearchBar/>
-//             <button className={style.boton} onClick={onClikcHandler}>CREATE</button>
-//         </>
-//     )}
-// </div>
 
     )
 }

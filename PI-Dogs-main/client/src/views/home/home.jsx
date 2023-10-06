@@ -11,9 +11,9 @@ const DOGS_PER_PAGE = 8;
 
 const Home = () => {
   const newTemperamento = useSelector((state) => state?.temperaments);
-  const newDogs = useSelector((state) => state?.newDogs || []);
+  const allDogs = useSelector((state) => state?.newDogs);
   const [temperamentos, setTemperamentos] = useState("");
-  const totalDogs = newDogs?.length;
+  const totalDogs = allDogs?.length;
   const totalPage = Math.ceil(totalDogs / DOGS_PER_PAGE);
   const [currentPage, setCurrentPage] = useState(0);
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Home = () => {
 
   const startDogs = currentPage * DOGS_PER_PAGE;
   const endDogs = startDogs + DOGS_PER_PAGE;
-  const dogsToDisplay = newDogs?.slice(startDogs, endDogs);
+  const dogsToDisplay = allDogs?.slice(startDogs, endDogs);
 
   const nextHandler = () => {
     if (currentPage < totalPage - 1) {

@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
         case GET_NAME:
             return { ...state, dogs: action.payload, newDogs: action.payload };
         case CREATE_DOG:
-            return { ...state, dogs: action.payload, newDogs: action.payload };
+            return { ...state, dogs:[...state.dogs, action.payload], newDogs: [...state.newDogs,action.payload] };
 
         case TEMPERAMENTO:
             return { ...state, temperaments: action.payload }

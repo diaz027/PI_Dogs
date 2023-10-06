@@ -1,16 +1,19 @@
-.img{
+.img {
+    overflow: hidden;
     background-image: url('../../../assets/samoyedo-en-lago-y-montanas_7680x4320_xtrafondos.com.jpg');
     background-size: cover;
-    height: 100vh;
+    height: 100vh; /* Establece la altura al 100% de la ventana */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-
-.boton{
+.boton {
     background-color: rgba(0, 255, 255, 0.295);
     border-radius: 9px;
-    top:1000px;
 }
 
-h1{
+h1 {
     margin: 0;
-  }
+}

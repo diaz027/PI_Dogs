@@ -9,64 +9,48 @@ const CrearForm = () => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
-    name: '',
+    name: "",
     reference_image_id: "",
-    height: "",
-    weight: "",
-    life_span: '',
+    minHeight: "",
+    maxHeight: "",
+    minWeight: "",
+    maxWeight: "",
+    life_span: "",
     temperament: [],
   });
   useEffect(() => {
     dispatch(temp())
   },[]) 
   
-
+  
   const handleChange = (event) => {
-    if (event.target.name === "minHeight") {
-      return setFormData({
-        ...formData,
-        height: event.target.value.concat(formData.height)
-      })
-    }
-    if (event.target.name === "maxHeight") {
-      return setFormData({
-        ...formData,
-        height: formData.height.concat(" - " + event.target.value)
-      })
-    }
-    if (event.target.name === "minWeight") {
-      return setFormData({
-        ...formData,
-        weight: event.target.value.concat(formData.weight)
-      })
-    }
-    if (event.target.name === "maxWeight") {
-      return setFormData({
-        ...formData,
-        weight: formData.weight.concat(" - " + event.target.value)
-      })
-    }  // creamos estos if para que juntemos la informacion con de las alturas o pesos y la pesaramos con un - como en la api
-    // agarramos lo que me entra por el value le concatenamos lo que esta height
-    // agarramos lo que me entra por el value le concatenamos lo que esta weight
-
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
     });
-
+  
     setErrors(
       validacion({
         ...formData,
         [event.target.name]: event.target.value,
       })
     );
+
   }
-  
+  console.log(formData);
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createAllDog(formData));
-  };
-console.log(formData)
+    dispatch(createAllDog({
+      ...formData,
+      height:`${formData.minHeight} - ${formData.maxHeight}`,
+      weight:`${formData.minWeight} - ${formData.maxWeight}`,
+    }));
+    }
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   dispatch(createAllDog(formData));
+  //   }
+
 
   return (
     <div className={style.body}>
