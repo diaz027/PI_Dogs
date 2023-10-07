@@ -5,7 +5,6 @@ let initialState = {
     newDogs: [], //copia
     temperaments: [],
     tempHome: []
-    // allFilteBdAPI: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -15,7 +14,7 @@ const reducer = (state = initialState, action) => {
         case GET_NAME:
             return { ...state, dogs: action.payload, newDogs: action.payload };
         case CREATE_DOG:
-            return { ...state, dogs:[...state.dogs, action.payload], newDogs: [...state.newDogs,action.payload] };
+            return { ...state, dogs: [...state.dogs, action.payload], newDogs: [...state.newDogs, action.payload] };
 
         case FILTER_BD_API:
             let termo;
@@ -25,9 +24,10 @@ const reducer = (state = initialState, action) => {
             else if (action.payload === 'db') {
                 termo = state.dogs.filter((dog) => dog.id.toString().length > 4)
             }
-            return { ...state,
-            newDogs:[...termo],
-        }
+            return {
+                ...state,
+                newDogs: [...termo],
+            }
 
         case TEMPERAMENTO:
             return { ...state, temperaments: action.payload }
@@ -36,8 +36,8 @@ const reducer = (state = initialState, action) => {
         case FILTER:
             const copyDogs = [...state.dogs]
             const response = [...copyDogs.filter((dog) => {
-                return dog.temperament &&  dog.temperament.split(',').map(item => item.trim()).includes(action.payload);
-              })]
+                return dog.temperament && dog.temperament.split(',').map(item => item.trim()).includes(action.payload);
+            })]
             return {
                 ...state,
                 newDogs: response
@@ -61,27 +61,28 @@ const reducer = (state = initialState, action) => {
                     newDogs: [...result]
                 }
             }
+            
         case ORDER_PESOS:
             let ordenPeso;
-            if(action.payload === "PesoMax"){
-            ordenPeso = [...state.newDogs].sort((a, b) => {
-            const weightA = parseInt(a.weight.metric.split(' - ')[1]);
-            const weightB = parseInt(b.weight.metric.split(' - ')[1]);
-            return weightB - weightA;
-            });
-        } else if (action.payload === "PesoMin"){
-            ordenPeso = [...state.newDogs].sort((a, b) => {
-            const weightA = parseInt(a.weight.metric.split(' - ')[1]);
-            const weightB = parseInt(b.weight.metric.split(' - ')[1]);
-            return weightA - weightB;
-            });
-        }
-    return {
-        ...state,
-        newDogs: ordenPeso
-    }
-
-
+            if (action.payload === "PesoMax") {
+                ordenPeso = [...state.newDogs].sort((a, b) => {
+                    const weightA = a.weight && a.weight.metric ? parseInt(a.weight.metric.split(' - ')[1]) : 0;
+                    const weightB = b.weight && b.weight.metric ? parseInt(b.weight.metric.split(' - ')[1]) : 0;
+                    return weightB - weightA;
+                });
+            } else if (action.payload === "PesoMin") {
+                ordenPeso = [...state.newDogs].sort((a, b) => {
+                    const weightA = a.weight && a.weight.metric ? parseInt(a.weight.metric.split(' - ')[1]) : 0;
+                    const weightB = b.weight && b.weight.metric ? parseInt(b.weight.metric.split(' - ')[1]) : 0;
+                    return weightA - weightB;
+                });
+            } else {
+                return state;
+            }
+            return {
+                ...state,
+                newDogs: ordenPeso
+            };
 
         default:
             return state;
