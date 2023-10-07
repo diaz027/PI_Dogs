@@ -1,10 +1,9 @@
-import { GET_DOGS, GET_NAME, CREATE_DOG, ORDER, FILTER, TEMPERAMENTO, FILTER_BD, FILTER_API, ORDER_PESOS } from './action-types'
+import { GET_DOGS, GET_NAME, CREATE_DOG, ORDER, FILTER, TEMPERAMENTO, FILTER_BD_API , ORDER_PESOS } from './action-types'
 import axios from 'axios'
 
 export const getDogs = () => {
       return async (dispatch) => {
             const response = await axios.get('http://localhost:3001/dogs');
-            console.log(response.data)
             return dispatch({
                   type: GET_DOGS,
                   payload: response.data,
@@ -53,18 +52,15 @@ export const filterTemp = (name) => {
             type: FILTER,
             payload:name
         }
-        
 }
 
 
-export const filterBd = (name) => {
-      return { type: FILTER_BD, payload: name }
+export const filterBdApi = (value) => {
+            return {
+                  type: FILTER_BD_API,
+                  payload: value
+            }
 }
-
-export const filterApi = (name) =>  {
-      return { type: FILTER_API, playload: name}
-}
-
 
 export const orderCards = (order) => {
       return { type: ORDER, payload: order }

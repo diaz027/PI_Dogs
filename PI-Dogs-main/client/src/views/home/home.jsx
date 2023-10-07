@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { filterTemp, getDogs, orderPesos, temp, } from '../../Redux/actions';
+import { filterBdApi, filterTemp, getDogs, orderPesos, temp, } from '../../Redux/actions';
 import { orderCards } from '../../Redux/actions'
 import Cards from '../../components/cards/cards';
 import style from './home.module.css'
@@ -45,6 +45,11 @@ const Home = () => {
     dispatch(orderPesos(event.target.value));
   }
 
+  const handleOrderTotales =(event) => {
+    const mate = event.target.value
+    dispatch(filterBdApi(mate));
+  }
+
   const handlerFilter = (event) => {
     const seleccion = event.target.value;
     setTemperamentos(seleccion);
@@ -64,9 +69,9 @@ const Home = () => {
         <option value="D">Z-A</option>
       </select>
 
-      <select className={style.option} >
-        <option value="Api">api</option>
-        <option value="Base de datos">db</option>
+      <select className={style.option} onChange={handleOrderTotales} >
+        <option value="api">api</option>
+        <option value="db">db</option>
       </select>
 
       <select className={style.option} onChange={handleOrderPesos}>

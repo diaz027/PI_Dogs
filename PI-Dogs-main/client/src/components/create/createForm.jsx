@@ -37,7 +37,6 @@ const CrearForm = () => {
     );
 
   }
-  console.log(formData);
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createAllDog({
@@ -46,10 +45,6 @@ const CrearForm = () => {
       weight:`${formData.minWeight} - ${formData.maxWeight}`,
     }));
     }
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   dispatch(createAllDog(formData));
-  //   }
 
 
   return (

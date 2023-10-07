@@ -1,12 +1,11 @@
-import { CREATE_DOG, FILTER, FILTER_API, FILTER_BD, GET_DOGS, GET_NAME, ORDER, ORDER_PESOS, TEMPERAMENTO } from "./action-types";
+import { CREATE_DOG, FILTER, FILTER_BD_API, GET_DOGS, GET_NAME, ORDER, ORDER_PESOS, TEMPERAMENTO } from "./action-types";
 
 let initialState = {
     dogs: [],//original
     newDogs: [], //copia
     temperaments: [],
-    tempHome: [],
-    allFilteBd: [],
-    allfilteAPI:[]
+    tempHome: []
+    // allFilteBdAPI: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +16,18 @@ const reducer = (state = initialState, action) => {
             return { ...state, dogs: action.payload, newDogs: action.payload };
         case CREATE_DOG:
             return { ...state, dogs:[...state.dogs, action.payload], newDogs: [...state.newDogs,action.payload] };
+
+        case FILTER_BD_API:
+            let termo;
+            if (action.payload === 'api') {
+                termo = state.dogs.filter((dog) => dog.id.toString().length < 4)
+            }
+            else if (action.payload === 'db') {
+                termo = state.dogs.filter((dog) => dog.id.toString().length > 4)
+            }
+            return { ...state,
+            newDogs:[...termo],
+        }
 
         case TEMPERAMENTO:
             return { ...state, temperaments: action.payload }
@@ -32,11 +43,6 @@ const reducer = (state = initialState, action) => {
                 newDogs: response
             }
 
-        case FILTER_BD:
-            return { ...state, allFilteBd: action.payload }
-
-            case FILTER_API:
-                return { ...state, allfilteAPI: action.payload }
 
         case ORDER:
             if (action.payload === 'A') {

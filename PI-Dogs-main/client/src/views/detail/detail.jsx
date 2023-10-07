@@ -1,7 +1,7 @@
-import axios from 'axios';
-import style from './detail.module.css'
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import style from './detail.module.css'
 
 const Detail = () => {
     const { id } = useParams();
@@ -11,10 +11,11 @@ const Detail = () => {
         async function character() {
             const response = await axios.get(`http://localhost:3001/dogs/${id}`)
             const result = response.data;
-            setDogs(result[0])
+            setDogs(result)
         }
         character()
     }, [id])
+    // console.log(dogs)
     return (
         <div className={style.detail}>
             <h2>Nombre:{dogs.name}</h2>
