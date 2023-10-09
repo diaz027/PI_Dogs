@@ -17,15 +17,11 @@ const CrearForm = () => {
     life_span: "",
     temperament: [],
   });
-  console.log(formData);
-  useEffect(() => {
-    dispatch(temp())
-  }, [])
-
+  
 
   const handleChange = (event) => {
-      if(event.target.name === 'temperament') return setFormData({...formData,
-        temperament: [...formData.temperament, event.target.value]
+    if(event.target.name === 'temperament') return setFormData({...formData,
+      temperament: [...formData.temperament, event.target.value]
       })
     setFormData({
       ...formData,
@@ -39,7 +35,6 @@ const CrearForm = () => {
         [event.target.name]: event.target.value,
       })
     );
-
   }
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -49,7 +44,6 @@ const CrearForm = () => {
       weight: `${formData.minWeight} - ${formData.maxWeight}`,
     }));
   }
-
 
   return (
     <div className={style.body}>

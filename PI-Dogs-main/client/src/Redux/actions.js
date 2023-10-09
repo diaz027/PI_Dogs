@@ -4,6 +4,7 @@ import axios from 'axios'
 export const getDogs = () => {
       return async (dispatch) => {
             const response = await axios.get('http://localhost:3001/dogs');
+            console.log(response.data);
             return dispatch({
                   type: GET_DOGS,
                   payload: response.data,
@@ -26,6 +27,7 @@ export const createAllDog = (formData) => {
             try {
 
                   const response = await axios.post(`http://localhost:3001/dogs`, formData);
+                  console.log(response.data)
                   alert('ya se creo perrito!!')
                   return dispatch({
                         type: CREATE_DOG,

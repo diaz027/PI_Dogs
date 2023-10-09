@@ -7,12 +7,13 @@ const getTemperaments = async () => {
 
   //recorro cada temperamento de cada perro y extraigo los temperaments de la api
   const temperamentsInfo = temApi?.data?.forEach(dog =>
-    dog?.temperament?.split(', ').forEach(temperament => uniqueTemperaments.add(temperament))// add() agrega temperamentos al objeto
+    dog?.temperament?.split(', ').forEach(temperament => uniqueTemperaments.add(temperament))
   )
   // convierto en array al set 
   const allTemperaments = [...uniqueTemperaments].map(temperament => ({//  lo mapeo para que yo poder convertirlo en objeto
     name: temperament,
   }))
+  console.log(allTemperaments)
   //agrego a bd 
     Temperaments.bulkCreate(allTemperaments)
   return allTemperaments
