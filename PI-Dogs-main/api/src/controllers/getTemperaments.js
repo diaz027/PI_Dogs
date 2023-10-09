@@ -15,7 +15,9 @@ const getTemperaments = async () => {
   }))
   console.log(allTemperaments)
   //agrego a bd 
-    Temperaments.bulkCreate(allTemperaments)
+  const pepe = Temperaments.findAll()
+  if(!pepe.length){
+      Temperaments.bulkCreate(allTemperaments)}
   return allTemperaments
 }
 module.exports = getTemperaments;
