@@ -13,7 +13,7 @@ const getDogsById = async(idRaza) => {
               weight: {metric: dog.weight},
               height: {metric: dog.height},
               life_span: dog.life_span,
-              temperaments: dog.Temperaments 
+              temperament: dog.Temperament 
               //Devuelve array
           }
       })

@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
         case FILTER:
             const copyDogs = [...state.dogs]
             const response = [...copyDogs.filter((dog) => {
-                return dog.temperament && dog.temperament.split(',').map(item => item.trim()).includes(action.payload);
+                return dog.temperament && dog.temperament.split(',').map(element => element.trim()).includes(action.payload);
             })]
             return {
                 ...state,
@@ -62,27 +62,25 @@ const reducer = (state = initialState, action) => {
                 }
             }
             
-        case ORDER_PESOS:
-            let ordenPeso;
-            if (action.payload === "PesoMax") {
+            case ORDER_PESOS:
+                let ordenPeso;
+                if(action.payload === "PesoMax"){
                 ordenPeso = [...state.newDogs].sort((a, b) => {
-                    const weightA = a.weight && a.weight.metric ? parseInt(a.weight.metric.split(' - ')[1]) : 0;
-                    const weightB = b.weight && b.weight.metric ? parseInt(b.weight.metric.split(' - ')[1]) : 0;
-                    return weightB - weightA;
+                const weightA = parseInt(a.weight.metric.split(' - ')[1]);
+                const weightB = parseInt(b.weight.metric.split(' - ')[1]);
+                return weightB - weightA;
                 });
-            } else if (action.payload === "PesoMin") {
+            } else if (action.payload === "PesoMin"){
                 ordenPeso = [...state.newDogs].sort((a, b) => {
-                    const weightA = a.weight && a.weight.metric ? parseInt(a.weight.metric.split(' - ')[1]) : 0;
-                    const weightB = b.weight && b.weight.metric ? parseInt(b.weight.metric.split(' - ')[1]) : 0;
-                    return weightA - weightB;
+                const weightA = parseInt(a.weight.metric.split(' - ')[1]);
+                const weightB = parseInt(b.weight.metric.split(' - ')[1]);
+                return weightA - weightB;
                 });
-            } else {
-                return state;
             }
-            return {
-                ...state,
-                newDogs: ordenPeso
-            };
+        return {
+            ...state,
+            newDogs: ordenPeso
+        }
 
         default:
             return state;

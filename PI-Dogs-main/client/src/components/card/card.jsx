@@ -10,7 +10,7 @@ function Card({ id, name, weight, reference_image_id, temperament }) {
             <Link to={`/detail/${id}`}>
                 <h2>{name}</h2>
             </Link>
-            <p>{weight.metric}</p>
+            <p>{weight?.metric}</p>
             <p>{temperament}</p>
             <img className={style.img} src={`https://cdn2.thedogapi.com/images/${reference_image_id}.jpg`} alt='' />
         </div>

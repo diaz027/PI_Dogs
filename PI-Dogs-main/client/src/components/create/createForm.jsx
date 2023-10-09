@@ -10,7 +10,6 @@ const CrearForm = () => {
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
-    reference_image_id: "",
     minHeight: "",
     maxHeight: "",
     minWeight: "",
@@ -20,15 +19,15 @@ const CrearForm = () => {
   });
   useEffect(() => {
     dispatch(temp())
-  },[]) 
-  
-  
+  }, [])
+
+
   const handleChange = (event) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
     });
-  
+
     setErrors(
       validacion({
         ...formData,
@@ -41,10 +40,10 @@ const CrearForm = () => {
     event.preventDefault();
     dispatch(createAllDog({
       ...formData,
-      height:`${formData.minHeight} - ${formData.maxHeight}`,
-      weight:`${formData.minWeight} - ${formData.maxWeight}`,
+      height: `${formData.minHeight} - ${formData.maxHeight}`,
+      weight: `${formData.minWeight} - ${formData.maxWeight}`,
     }));
-    }
+  }
 
 
   return (
@@ -54,9 +53,6 @@ const CrearForm = () => {
           <label >Nombre</label>
           <input type="text" name="name" value={formData.name} onChange={handleChange} />
           {errors.name && <p style={{ color: 'white', fontSize: '20px' }}>{errors.name}</p>}
-
-          <label >imagen</label>
-          <input type="text" name="reference_image_id" value={formData.reference_image_id} onChange={handleChange} />
 
           <label >AlturaMin</label>
           <input type="text" name="minHeight" value={formData.minHeight} onChange={handleChange} />
@@ -79,9 +75,12 @@ const CrearForm = () => {
           {errors.life_span && <p style={{ color: 'white', fontSize: '20px' }}>{errors.life_span}</p>}
 
           <label>Temperamentos
-          <select >
-           { newTemperamento.map(temperament => <option name={temperament.name} key={temperament.name}>{temperament.name}</option>)}
-          </select>
+            <select multiple
+              name="temperament"
+              value={formData.temperament}
+              onChange={handleChange} >
+              {newTemperamento.map(temperament => <option name={temperament.name} key={temperament.name}  value={temperament.name}>{temperament.name}</option>)}
+            </select>
           </label>
 
           <button className={style.boton}>Crear</button>
