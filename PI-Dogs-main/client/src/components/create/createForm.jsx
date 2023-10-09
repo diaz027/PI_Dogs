@@ -17,15 +17,20 @@ const CrearForm = () => {
     life_span: "",
     temperament: [],
   });
+  console.log(formData);
   useEffect(() => {
     dispatch(temp())
   }, [])
 
 
   const handleChange = (event) => {
+      if(event.target.name === 'temperament') return setFormData({...formData,
+        temperament: [...formData.temperament, event.target.value]
+      })
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+        [event.target.name]: event.target.value,
+      
     });
 
     setErrors(
