@@ -8,6 +8,7 @@ const CrearForm = () => {
   const newTemperamento = useSelector((state) => state?.temperaments);
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
+  const [formIsValid, setFormIsValid] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     minHeight: "",
@@ -36,13 +37,33 @@ const CrearForm = () => {
       })
     );
   }
+
+  const validateForm = () => {
+    return (
+      !errors.name &&
+      !errors.minHeight &&
+      !errors.maxHeight &&
+      !errors.minWeight &&
+      !errors.maxWeight &&
+      !errors.life_span
+    );
+  }
+
+  useEffect(() => {
+    setFormIsValid(validateForm());
+  }, [errors]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createAllDog({
-      ...formData,
-      height: `${formData.minHeight} - ${formData.maxHeight}`,
-      weight: `${formData.minWeight} - ${formData.maxWeight}`,
-    }));
+    if (formIsValid) {
+      dispatch(createAllDog({
+        ...formData,
+        height: `${formData.minHeight} - ${formData.maxHeight}`,
+        weight: `${formData.minWeight} - ${formData.maxWeight}`,
+      }));
+    } else {
+      alert('Por favor, complete todos los campos correctamente.');
+    }
   }
 
   return (
@@ -51,27 +72,27 @@ const CrearForm = () => {
         <form onSubmit={handleSubmit}>
           <label >Nombre</label>
           <input type="text" name="name" value={formData.name} onChange={handleChange} />
-          {errors.name && <p style={{ color: 'white', fontSize: '20px' }}>{errors.name}</p>}
+          {errors.name && <p style={{ color: 'white', fontSize: '13px' }}>{errors.name}</p>}
 
           <label >AlturaMin</label>
           <input type="text" name="minHeight" value={formData.minHeight} onChange={handleChange} />
-          {errors.minHeight && <p style={{ color: 'white', fontSize: '20px' }}>{errors.minHeight}</p>}
+          {errors.minHeight && <p style={{ color: 'white', fontSize: '13px' }}>{errors.minHeight}</p>}
 
           <label >AlturaMax</label>
           <input type="text" name="maxHeight" value={formData.maxHeight} onChange={handleChange} />
-          {errors.maxHeight && <p style={{ color: 'white', fontSize: '20px' }}>{errors.maxHeight}</p>}
+          {errors.maxHeight && <p style={{ color: 'white', fontSize: '13px' }}>{errors.maxHeight}</p>}
 
           <label >PesoMin</label>
           <input type="text" name="minWeight" value={formData.minWeight} onChange={handleChange} />
-          {errors.minWeight && <p style={{ color: 'white', fontSize: '20px' }}>{errors.minWeight}</p>}
+          {errors.minWeight && <p style={{ color: 'white', fontSize: '13px' }}>{errors.minWeight}</p>}
 
           <label >PesoMax</label>
           <input type="text" name="maxWeight" value={formData.maxWeight} onChange={handleChange} />
-          {errors.maxWeight && <p style={{ color: 'white', fontSize: '20px' }}>{errors.maxWeight}</p>}
+          {errors.maxWeight && <p style={{ color: 'white', fontSize: '13px' }}>{errors.maxWeight}</p>}
 
           <label >años de vida</label>
           <input type="text" name="life_span" value={formData.life_span} onChange={handleChange} />
-          {errors.life_span && <p style={{ color: 'white', fontSize: '20px' }}>{errors.life_span}</p>}
+          {errors.life_span && <p style={{ color: 'white', fontSize: '13px' }}>{errors.life_span}</p>}
 
           <label>Temperamentos
             <select multiple
@@ -82,7 +103,7 @@ const CrearForm = () => {
             </select>
           </label>
 
-          <button className={style.boton}>Crear</button>
+          <button className={style.boton} disabled={!formIsValid}>Crear</button>
         </form>
       </div>
     </div>

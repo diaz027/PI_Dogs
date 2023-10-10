@@ -64,7 +64,8 @@ const reducer = (state = initialState, action) => {
             
             case ORDER_PESOS:
                 let ordenPeso;
-                if(action.payload === "PesoMax"){
+                if(action.payload === 'MaxMin'){ordenPeso =[...state.dogs]}
+                else if(action.payload === "PesoMax"){
                 ordenPeso = [...state.newDogs].sort((a, b) => {
                 const weightA = parseInt(a.weight.metric.split(' - ')[1]);
                 const weightB = parseInt(b.weight.metric.split(' - ')[1]);
@@ -76,7 +77,7 @@ const reducer = (state = initialState, action) => {
                 const weightB = parseInt(b.weight.metric.split(' - ')[1]);
                 return weightA - weightB;
                 });
-            }
+            } 
         return {
             ...state,
             newDogs: ordenPeso

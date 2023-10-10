@@ -74,7 +74,8 @@ const Home = () => {
         <option value="db">db</option>
       </select>
 
-      <select className={style.option} onChange={handleOrderPesos}>
+      <select  className={style.option} onChange={handleOrderPesos}>
+        <option value='MaxMin'>Max/Min</option>
         <option value="PesoMax">PesoMax</option>
         <option value="PesoMin" >PesoMin</option>
       </select>
