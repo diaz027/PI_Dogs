@@ -13,9 +13,8 @@ const getTemperaments = async () => {
   const allTemperaments = [...uniqueTemperaments].map(temperament => ({//  lo mapeo para que yo poder convertirlo en objeto
     name: temperament,
   }))
-  console.log(allTemperaments)
   //agrego a bd 
-  const pepe = Temperaments.findAll()
+  const pepe = await Temperaments.findAll()
   if(!pepe.length){
       Temperaments.bulkCreate(allTemperaments)}
   return allTemperaments
