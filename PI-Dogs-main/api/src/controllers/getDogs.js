@@ -12,7 +12,7 @@ const getDogs = async () => {
       weight: { metric: dog.weight },
       height: { metric: dog.height },
       life_span: dog.life_span,
-      temperament: dog.Temperaments.map(element => element.dataValues.name).join(', ').trim()
+      temperament: dog.Temperaments.map(element => element.dataValues.name).join(', ').trim()//se utiliza para mapear(recorrer) los registros de temperamentos asociados al perro
       //Devuelve array
     }
   })

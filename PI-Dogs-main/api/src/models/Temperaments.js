@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.UUID,// id = uuid (universal unique identifier), esto se usa para bd
-        defaultValue: DataTypes.UUIDV4, // el uuidv4 es para cuando no se leda un valor, por default se asigna un valor en la bd
+        defaultValue: DataTypes.UUIDV4, // el uuidv4 es tipo de id, defaultValue= por default se asigna un valor en la bd
         primaryKey: true 
       },
       name: {
