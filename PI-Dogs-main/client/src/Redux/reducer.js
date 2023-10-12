@@ -44,22 +44,23 @@ const reducer = (state = initialState, action) => {
             }
 
 
+        
         case ORDER:
             if (action.payload === 'A') {
-                const allDogsCopy = [...state.newDogs]
-                const result = allDogsCopy.sort((a, b) => a.id - b.id)
+                const allDogsCopy = [...state.newDogs];
+                const result = allDogsCopy.sort((a, b) => a.name.localeCompare(b.name));
                 return {
                     ...state,
                     newDogs: [...result]
-                }
+                };
             }
             if (action.payload === 'D') {
-                const allDogsCopy = [...state.newDogs]
-                const result = allDogsCopy.sort((a, b) => b.id - a.id)
+                const allDogsCopy = [...state.newDogs];
+                const result = allDogsCopy.sort((a, b) => b.name.localeCompare(a.name));
                 return {
                     ...state,
                     newDogs: [...result]
-                }
+                };
             }
             
             case ORDER_PESOS:

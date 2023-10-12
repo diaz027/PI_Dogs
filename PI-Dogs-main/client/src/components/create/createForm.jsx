@@ -82,6 +82,7 @@ const CrearForm = () => {
           <input type="text" name="maxHeight" value={formData.maxHeight} onChange={handleChange} />
           {errors.maxHeight && <p style={{ color: 'white', fontSize: '13px' }}>{errors.maxHeight}</p>}
 
+
           <label >PesoMin</label>
           <input type="text" name="minWeight" value={formData.minWeight} onChange={handleChange} />
           {errors.minWeight && <p style={{ color: 'white', fontSize: '13px' }}>{errors.minWeight}</p>}

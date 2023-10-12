@@ -13,7 +13,7 @@ export const getDogs = () => {
 
 export const getDogsName = (name) => {
       return async (dispatch) => {
-            const response = await axios.get(`http://localhost:3001/name?name=` + name);
+            const response = await axios.get(`http://localhost:3001/name?name=${name}`);
             return dispatch({
                   type: GET_NAME,
                   payload: response.data,

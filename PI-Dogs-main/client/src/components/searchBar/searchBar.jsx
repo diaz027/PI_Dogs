@@ -30,7 +30,7 @@ const SearchBar = ({setCurrentPage}) => {
 
         <div className={style.inputContainer}>
             <input className={style.label} type='text' onChange={handleName} value={name} />
-            <button className={style.button} onClick={handleOnClick}>agregar</button>
+            <button className={style.button} onClick={handleOnClick}>Buscar</button>
             <button className={style.button} onClick={reset}>reset</button>
         </div>
 

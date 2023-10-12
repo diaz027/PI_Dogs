@@ -3,8 +3,12 @@ const validacion =  (formData) =>{
     if (!/^[A-Za-z]{1,25}$/i.test(formData.name)) {
         errors.name = 'Debe contener solo letras y no exceder los 25 caracteres';
     }
-    if (!/^\d{1,3}$/.test(formData.minHeight)) {
+    if (!/^\d{1,3}$/.test(formData.minHeight )) {
         errors.minHeight = 'La altura mínima debe ser un número de hasta 3 dígitos';
+      }
+
+      if(formData.minHeight >= formData.maxHeight){
+        errors.minHeight = 'la altura minima no puede ser mayor o igual a la maxima'
       }
 
       if (!/^\d{1,3}$/.test(formData.maxHeight)) {
