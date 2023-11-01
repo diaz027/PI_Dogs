@@ -4,39 +4,20 @@ import { filterBdApi, filterTemp, getDogs, orderPesos, temp, } from '../../Redux
 import { orderCards } from '../../Redux/actions'
 import Cards from '../../components/cards/cards';
 import style from './home.module.css'
+import Paginado from '../../components/paginado/paginado';
 // import axios from 'axios'
 
 //paginado
-const DOGS_PER_PAGE = 8;
+
 
 const Home = () => {
   const newTemperamento = useSelector((state) => state?.temperaments);
-  const allDogs = useSelector((state) => state?.newDogs);
+  
   const [temperamentos, setTemperamentos] = useState("");
-  const totalDogs = allDogs?.length;
-  const totalPage = Math.ceil(totalDogs / DOGS_PER_PAGE);
-  const [currentPage, setCurrentPage] = useState(0);
   const dispatch = useDispatch();
   
-  useEffect(() => {
-    dispatch(getDogs());
-  }, [dispatch]);
 
-  const startDogs = currentPage * DOGS_PER_PAGE;
-  const endDogs = startDogs + DOGS_PER_PAGE;
-  const dogsToDisplay = allDogs?.slice(startDogs, endDogs);
-
-  const nextHandler = () => {
-    if (currentPage < totalPage - 1) {
-      setCurrentPage(currentPage + 1)
-    }
-  };
-
-  const prevHandler = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  
   const handleOrder = (event) => {
     dispatch(orderCards(event.target.value));
   }
@@ -85,13 +66,7 @@ const Home = () => {
         {newTemperamento.map(temperament => <option value={temperament.name} name={temperament.name} key={temperament.name}>{temperament.name}</option>)}
       </select>
 
-      <Cards newDogs={dogsToDisplay} />
-
-      <div>
-        <button className={style.boton} onClick={prevHandler} disabled={currentPage === 0} >Prev</button>
-        <span style={{ color: 'white' }}>pagina: {currentPage + 1} de {totalPage} </span>
-        <button className={style.boton} onClick={nextHandler} disabled={currentPage === totalPage - 1} >Next</button>
-      </div>
+      <Paginado />
     </div>
   );
 }
